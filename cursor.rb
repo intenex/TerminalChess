@@ -50,8 +50,6 @@ class Cursor
     handle_key(key, color)
   end
 
-  private
-
   def read_char
     STDIN.echo = false # stops the console from printing return values # whoah this is awesome love it
 
@@ -87,11 +85,16 @@ class Cursor
   class LoadGameEscape < StandardError
   end
 
+  private
+
   def handle_key(key, color)
     case key
     when :return, :space
       row, col = @cursor_pos
-      if @board.grid[row][col].color == color
+      if @selected && (@start_pos == @cursor_pos)
+        @selected = false
+        @start_pos = Array.new
+      elsif @board.grid[row][col].color == color
         @selected = true
         @start_pos = @cursor_pos
       elsif (@board.grid[row][col].color != color) && @selected

@@ -7,8 +7,9 @@ class Game
         @display = Display.new(@board)
         @players = { :white => HumanPlayer.new(:white, @display), :black => HumanPlayer.new(:black, @display) }
         @current_player = :white
-        puts "Welcome to chess! At any point,\npress ctrl-s to save your game,\nor ctrl-l to load a saved game.\nPress ctrl-c to exit."
-        sleep(3)
+        system('clear')
+        puts "Welcome to chess! At any point,\npress ctrl-s to save your game,\nor ctrl-l to load a saved game.\nPress ctrl-c to exit.\nPress any key to continue." # initialization message so it doesn't show up again when the game is played
+        @display.cursor.read_char # just lets the player enter any key to move forward in the game
     end
 
     def play
