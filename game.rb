@@ -12,7 +12,7 @@ class Game
             puts "Sadly, it appears you are not running iTerm2, and so\ndo not have true color support. For best results,\nplease run in iTerm2. Reverting to 256 color mode...\n\n"
             Paint.mode = 256
         end
-        puts "Welcome to chess! At any point,\npress ctrl-s to save your game,\nor ctrl-l to load a saved game.\nPress ctrl-c to exit.\nPress any key to continue." # initialization message so it doesn't show up again when the game is played
+        puts "Welcome to Terminal Chess! At any point,\npress ctrl-s to save your game,\nor ctrl-l to load a saved game.\nPress ctrl-c to exit.\nPress any key to continue." # initialization message so it doesn't show up again when the game is played
         @display.cursor.read_char # just lets the player enter any key to move forward in the game
     end
 
