@@ -1,5 +1,4 @@
 require_relative 'piece'
-require 'byebug'
 
 class Board
 
@@ -100,12 +99,12 @@ class Board
 
     def draw?
         draw = false
-        if !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece?(:Bishop) && !any_piece?(:Knight) && !any_piece(:Pawn)
+        if !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece?(:Bishop) && !any_piece?(:Knight) && !any_piece?(:Pawn)
             draw = true
-        elsif !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece?(:Bishop) && !any_piece(:Pawn) && (((how_many_color?(:Knight, :white) == 1) && (how_many_color?(:Knight, :black) == 0)) || ((how_many_color?(:Knight, :black) == 1) && (how_many_color?(:Knight, :white) == 0)))
+        elsif !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece?(:Bishop) && !any_piece?(:Pawn) && (((how_many_color?(:Knight, :white) == 1) && (how_many_color?(:Knight, :black) == 0)) || ((how_many_color?(:Knight, :black) == 1) && (how_many_color?(:Knight, :white) == 0)))
             draw = true
-        elsif !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece(:Knight) && !any_piece(:Pawn)
-            draw = true if (any_bishops_color?(:white) && !any_bishops_color?(:black)) || (any_bishops_color?(:black) && !any_bishops_color?(:white))
+        elsif !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece?(:Knight) && !any_piece?(:Pawn)
+            draw = true if ((any_bishops_color?(:white) && !any_bishops_color?(:black)) || (any_bishops_color?(:black) && !any_bishops_color?(:white)))
         end
         draw
     end

@@ -194,7 +194,17 @@ end
 class Bishop < Piece
     include Slidable
 
-    def initialize(color, board, pos); super; @symbol = :♝ end
+    attr_reader :b_color
+
+    def initialize(color, board, pos)
+        super
+        @symbol = :♝
+        if @pos[0] == 0
+            (@pos[1] % 2 == 0) ? (@b_color = :white) : (@b_color = :black)
+        else
+            (@pos[1] % 2 == 0) ? (@b_color = :black) : (@b_color = :white)
+        end
+    end
 
     def move_dirs; [:diagonal] end
 end
