@@ -91,7 +91,37 @@ class Board
     end
     
     def checkmate?(color)
-        !@grid.any? { |row| row.any? { |piece| !piece.valid_moves.empty? && (piece.color == color) } }
+        (!@grid.any? { |row| row.any? { |piece| !piece.valid_moves.empty? && (piece.color == color) } }) && in_check?(color)
+    end
+
+    def stalemate?(color)
+        (!@grid.any? { |row| row.any? { |piece| !piece.valid_moves.empty? && (piece.color == color) } }) && !in_check?(color)
+    end
+
+    def draw?
+        draw = false
+        if !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece?(:Bishop) && !any_piece?(:Knight) && !any_piece(:Pawn)
+            draw = true
+        elsif !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece?(:Bishop) && !any_piece(:Pawn) && (((how_many_color?(:Knight, :white) == 1) && (how_many_color?(:Knight, :black) == 0)) || ((how_many_color?(:Knight, :black) == 1) && (how_many_color?(:Knight, :white) == 0)))
+            draw = true
+        elsif !any_piece?(:Queen) && !any_piece?(:Rook) && !any_piece(:Knight) && !any_piece(:Pawn)
+            draw = true if (any_bishops_color?(:white) && !any_bishops_color?(:black)) || (any_bishops_color?(:black) && !any_bishops_color?(:white))
+        end
+        draw
+    end
+
+    def any_piece?(type)
+        @grid.any? { |row| row.any? { |piece| piece.is_a?(Object.const_get(type)) } }
+    end
+
+    def how_many_color?(type, color)
+        counter = 0
+        @grid.each { |row| row.each { |piece| counter += 1 if (piece.is_a?(Object.const_get(type)) && (piece.color == color)) } }
+        counter
+    end
+
+    def any_bishops_color?(b_color)
+        @grid.any? { |row| row.any? { |piece| (piece.is_a?(Bishop) && (piece.b_color == b_color)) } }
     end
 
     def castle(piece, start_pos, end_pos)

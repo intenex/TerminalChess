@@ -5,7 +5,7 @@ Run "ruby './playgame.rb'" to start the game.
 
 Requires the 'paint' gem. "gem install paint"
 
-NB: Works best in iTerm2. Will display true color support only in iTerm2, and reduced 256 color support otherwise.
+NB: Works best in iTerm2. Will display true color support only in iTerm2, and reduced 256 color support otherwise. You may switch between modes at any time manually by pressing 'tab'.
 
 ## Commands
 * Ctrl-C to quit the game

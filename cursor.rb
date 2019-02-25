@@ -111,6 +111,8 @@ class Cursor
       raise LoadGameEscape
     when :ctrl_c
       Process.exit(0)
+    when :tab
+      (Paint.mode == 256) ? (Paint.mode = 0xFFFFFF) : (Paint.mode = 256)
     end
   end
 
