@@ -25,7 +25,7 @@ class Board
             raise ArgumentError.new("The selected piece cannot move to that position. Try again.")
         elsif !piece.valid_moves.include?(end_pos)
             raise ArgumentError.new("That move would leave you in check! Try again.")
-        elsif piece.is_a?(King) && piece.castle_pos.include?(end_pos)
+        elsif piece.is_a?(King) && piece.castle_pos.include?(end_pos) && !piece.moved 
             castle(piece, start_pos, end_pos)
         elsif piece.is_a?(Pawn) && ((end_pos[0] == 0) || (end_pos[0] == 7))
             begin
